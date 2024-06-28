@@ -72,6 +72,12 @@ function editClient($nombre_usuario, $saldo_cliente, $activado_cliente, $id_clie
 
     $resultado= $db->prepare("UPDATE clientes SET nombre_usuario=?, saldo_cliente=?, activado_cliente=? WHERE id_cliente = ?");
     $resultado->execute([$nombre_usuario, $saldo_cliente, $activado_cliente, $id_cliente]);
+    
+    if ($resultado->rowCount() > 0) {
+        return true; // Actualización exitosa
+    } else {
+        return false; // No se actualizó ninguna fila (o hubo un error)
+    }
 }
 
 }

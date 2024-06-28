@@ -1,16 +1,19 @@
 <?php
 require_once('app/model/ClienteModel.php');
+require_once('app/model/AgenteModel.php');
 require_once('app/view/JSONView.php');
 
 class clienteApiController {
 
     private $model;
+    private $model_agent;
     private $view;
 
     private $data;
 
     public function __construct() {
         $this->model = new ClienteModel();
+        $this->model_agent = new AgenteModel();
         $this->view = new JSONView();
 
         $this->data = file_get_contents("php://input");
@@ -70,14 +73,23 @@ class clienteApiController {
 
     public function newClient() {
         $clienteNuevo = $this->getData();
-
-        $lastId = $this->model->insertClient( 
+        $agente = $this->model_agent->getAgent($clienteNuevo->id_agente);
+        if ($agente) {
+            $lastId = $this->model->insertClient( 
                 $clienteNuevo->nombre_usuario, 
-                $clienteNuevo->saldo,
+                $clienteNuevo->saldo_cliente,
                 $clienteNuevo->activado_cliente,
-                $clienteNuevo->id);
+                $clienteNuevo->id_agente);
+            if($lastId){
+                $this->view->response("Se insertó correctamente con id: $lastId", 201);
 
-        $this->view->response("Se insertó correctamente con id: $lastId", 200);
+            }else{
+                $this->view->response("Error al insertar", 404);
+            }
+        }else{
+            $this->view->response("no existe agente con ese ID", 404);
+        }
+       
 
     }
 
@@ -89,6 +101,28 @@ class clienteApiController {
             $this->view->response("Cliente $id, eliminado", 200);
         } else {
             $this->view->response("Cliente $id, no encontrado", 404);
+        }
+    }
+    
+    function editClient($params = null){
+        $id = $params[':ID'];
+        $clienteNuevo = $this->getData();
+        $cliente= $this->model->getClient($id);
+        try {
+        
+            if($cliente){
+                $this->model->editClient( 
+                        $clienteNuevo->nombre_usuario, 
+                        $clienteNuevo->saldo_cliente,
+                        $clienteNuevo->activado_cliente,
+                        $id);
+                        
+                $this->view->response("Cliente $id, editado", 200);
+            }else{
+                $this->view->response("Cliente $id, no encontrado", 404);
+            }    
+        } catch (Exception $e) {
+            $this->view->response("Error de conexion", 500);
         }
     }
 }
