@@ -69,16 +69,18 @@ class agenteApiController {
     }  
 
     public function newAgent() {
-        
-        $agenteNuevo = $this->getData();
-        $lastId = $this->model->insertAgent( 
-                $agenteNuevo->nombre, 
-                $agenteNuevo->saldo,
-                $agenteNuevo->email,
-                $agenteNuevo->activado);
+        try {
+            $agenteNuevo = $this->getData();
+            $lastId = $this->model->insertAgent( 
+                    $agenteNuevo->nombre, 
+                    $agenteNuevo->saldo,
+                    $agenteNuevo->email,
+                    $agenteNuevo->activado);
 
-        $this->view->response("Se insertó correctamente con id: $lastId", 201);
-
+            $this->view->response("Se insertó correctamente con id: $lastId", 201);
+        }catch(Exception $e) {
+            $this->view->response("Error de servidor", 500);
+        }
     }
 
     public function deleteAgent($params = null) {
@@ -92,4 +94,25 @@ class agenteApiController {
         }
     }
     
+    function ediAgent($params = null){
+        $id = $params[':ID'];
+        $agenteNuevo = $this->getData();
+        $agente= $this->model->getAgent($id);
+        try {
+        
+            if($agente){
+                $this->model->insertAgent( 
+                    $agenteNuevo->nombre, 
+                    $agenteNuevo->saldo,
+                    $agenteNuevo->email,
+                    $agenteNuevo->activado);
+                        
+                $this->view->response("Agente $id, editado", 200);
+            }else{
+                $this->view->response("Agente $id, no encontrado", 404);
+            }    
+        } catch (Exception $e) {
+            $this->view->response("Error de conexion", 500);
+        }
+    }
 }
