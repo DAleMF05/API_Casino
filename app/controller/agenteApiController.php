@@ -69,16 +69,15 @@ class agenteApiController {
     }  
 
     public function newAgent() {
+        
         $agenteNuevo = $this->getData();
-
         $lastId = $this->model->insertAgent( 
                 $agenteNuevo->nombre, 
                 $agenteNuevo->saldo,
                 $agenteNuevo->email,
-                $agenteNuevo->activado,
-                $agenteNuevo->id);
+                $agenteNuevo->activado);
 
-        $this->view->response("Se insertó correctamente con id: $lastId", 200);
+        $this->view->response("Se insertó correctamente con id: $lastId", 201);
 
     }
 

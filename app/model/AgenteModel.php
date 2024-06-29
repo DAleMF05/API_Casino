@@ -23,6 +23,7 @@ function insertAgent($nombre, $saldo, $email, $activado){
     //Enviar la consulta
     $resultado= $db->prepare("INSERT INTO agentes (nombre, saldo, email, activado) VALUES (?,?,?,?)");
     $resultado->execute([$nombre, $saldo, $email, $activado]); // ejecuta
+    return $db->lastInsertId();
 }
 
 
