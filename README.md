@@ -7,7 +7,11 @@
     - [Función `editClient()`](#función-editclient)
     - [Función `newClient()`](#función-newclient)
 2. [agenteApiController](#documentación-agenteapicontroller)
-
+     - [Función `showAllAgents()`](#función-showallagents)
+     - [Función `getAgent()`](#función-getagent)
+     - [Función `deleteAgent()`](#función-deleteagent)
+     - [Función `editAgent()`](#función-editagent)
+     - [Función `newAgent()`](#función-newagent)
   
 3. [AuthApiController ](#documentación-authapicontroller)
     - [Función `getAllUsers()`](#función-getallusers)
@@ -360,12 +364,6 @@ Si ocurre un error del servidor, la función enviará una respuesta con código 
 ```
 
 
-
-
-
-
-
-
 ## Función `getAgent()`
 
 ### Descripción
@@ -530,7 +528,7 @@ Si ocurre un error del servidor, la función enviará una respuesta con código 
 ### Descripción
 En esta funcion se puede editar el agente, en el body del Postman ingresas los datos en formato JSON y cambias los datos que vas a editar.
 
-![Imágen del código de la función newClient](img/img-agentes/)
+![Imágen del código de la función newClient](img/img-agentes/editAgent.png)
 
 ### Retorno
 La función no retorna ningún valor directamente.
