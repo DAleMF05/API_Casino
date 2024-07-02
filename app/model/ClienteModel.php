@@ -5,13 +5,19 @@ require_once "app/model/Model.php";
 class ClienteModel extends Model{
 
     
-function getAll(){
+function getAll($atr = null, $order = null){
     //abrimos la conexion;
     $db = $this->createConexion();
    
     //Enviar la consulta
+    if(!$atr){
     $sentencia = $db->prepare("SELECT * FROM clientes");
+    }else{
+        $sentencia = $db->prepare("SELECT * FROM clientes ORDER by $atr $order");
+    }
+
     $sentencia->execute();
+    
     $clientes = $sentencia->fetchAll(PDO::FETCH_OBJ);
     return $clientes;
 }

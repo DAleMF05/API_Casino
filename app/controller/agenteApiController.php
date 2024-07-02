@@ -26,8 +26,13 @@ class agenteApiController
     public function showAllAgents()
     {
         try {
-            // Obtener todos los agentes del modelo
-            $agentes = $this->model->getAll();
+
+            if (empty($_GET['atr']) && empty($_GET['order'])) {
+                $agentes = $this->model->getAll();
+            } else{
+                $agentes = $this->model->getAll($_GET['atribute'], $_GET['order']);
+                }
+
             if ($agentes) {
                 // Si hay agentes, devolverlos con un código 200 (éxito)
                 $response = [

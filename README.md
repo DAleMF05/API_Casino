@@ -26,8 +26,6 @@ El clienteApiController es una clase encargada de manejar las solicitudes relaci
 A continuación se detallan cada una de sus funciones.
 
 
- 
-
 ## Función `showAllClients()`
 
 ### Descripción
@@ -47,7 +45,21 @@ La función no retorna ningún valor directamente. En su lugar, envía una respu
 ## Ejemplos de uso 
 ## URL: `API_Casino/api/clientes`
 ## METODO : GET
-## Query Params `?atributo=nombre_usuario&order=asc`
+
+## Query Params `?atribute=nombre_usuario&order=asc`
+
+Uso de parámetros
+Para usar los parametros, ubicamos en ?atribute= "la columna por la cual vamos a filtrar" y en order= "asc (para forma ascendente) o desc (para forma descendente)"
+Atributos para los parámetros : attribute, order.
+
+ATRIBUTE:
+id_cliente
+nombre_usuario
+saldo_cliente
+activado_cliente
+id_agente
+
+![Imágen del postman usando los parametros](img/img-clientes/queryParams.png)
 
 ### Ejemplo 1: Obtención exitosa de clientes
 
@@ -91,18 +103,12 @@ Si ocurre un error del servidor, la función enviará una respuesta con código 
 ```
 
 
-
-
-
-
-
-
 ## Función `getClient()`
 
 ### Descripción
 La función `getClient` obtiene el cliente que se desee siempre y cuando coincida el id del mismo, con el que se introduce a la hora de realizar la busqueda. Si el Id no existe, envia un mensaje en el que dice que no existe el cliente en la base de datos.
 
-![Imágen del código de la función getClient](img/img-clientes/getClient.png.png)
+![Imágen del código de la función getClient](img/img-clientes/getClient.png)
 
 
 ### Retorno
@@ -214,7 +220,7 @@ Si ocurre un error del servidor, la función enviará una respuesta con código 
 En esta funcion podes eliminar un cliente de la base de datos ingresando su ID, Si el ID que se ingresa no existe, va a aparecer un mensaje de error, sino va a eliminar el cliente.
 
 
-![Imágen del código de la función newClient](img/img-clientes/)
+![Imágen del código de la función newClient](img/img-clientes/deleteClient.PNG)
 
 ### Retorno
 La función no retorna ningún valor directamente.
@@ -321,7 +327,21 @@ La función no retorna ningún valor directamente. En su lugar, envía una respu
 ## Ejemplos de uso
 ## URL: `API_Casino/api/agentes`
 ## METODO : GET
-## Query Params `?atributo=nombre_usuario&order=asc`
+## Query Params `?atribute=nombre&order=asc`
+
+Uso de parámetros
+Para usar los parametros, ubicamos en ?atribute= "la columna por la cual vamos a filtrar" y en order= "asc (para forma ascendente) o desc (para forma descendente)"
+Atributos para los parámetros : attribute, order.
+
+ATRIBUTE:
+id_agente
+nombre
+saldo
+email
+activado
+
+
+![Imágen del postman usando los parametros](img/img-agentes/queryParamsAgentes.png)
 
 ### Ejemplo 1: Obtención exitosa de agentes
 

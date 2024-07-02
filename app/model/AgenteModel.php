@@ -5,13 +5,19 @@ require_once "app/model/Model.php";
 class AgenteModel extends Model{
 
     
-function getAll(){
+function getAll($atr = null, $order = null){
     //abrimos la conexion;
     $db = $this->createConexion();
-   
+
+    if(!$atr){
+        $sentencia = $db->prepare("SELECT * FROM agentes");
+        }else{
+            $sentencia = $db->prepare("SELECT * FROM agentes ORDER by $atr $order");
+        }
+
     //Enviar la consulta
-    $sentencia = $db->prepare("SELECT * FROM agentes");
     $sentencia->execute();
+
     $agentes = $sentencia->fetchAll(PDO::FETCH_OBJ);
     return $agentes;
 }
