@@ -50,13 +50,13 @@ La función no retorna ningún valor directamente. En su lugar, envía una respu
 
 Uso de parámetros
 Para usar los parametros, ubicamos en ?atribute= "la columna por la cual vamos a filtrar" y en order= "asc (para forma ascendente) o desc (para forma descendente)"
-Atributos para los parámetros : attribute, order.
+Claves para los query : attribute, order.
 
 ATRIBUTE:
-id_cliente
-nombre_usuario
-saldo_cliente
-activado_cliente
+id_cliente/
+nombre_usuario/
+saldo_cliente/
+activado_cliente/
 id_agente
 
 ![Imágen del postman usando los parametros](img/img-clientes/queryParams.png)
@@ -331,13 +331,13 @@ La función no retorna ningún valor directamente. En su lugar, envía una respu
 
 Uso de parámetros
 Para usar los parametros, ubicamos en ?atribute= "la columna por la cual vamos a filtrar" y en order= "asc (para forma ascendente) o desc (para forma descendente)"
-Atributos para los parámetros : attribute, order.
+Claves para los query : attribute, order.
 
 ATRIBUTE:
-id_agente
-nombre
-saldo
-email
+id_agente/
+nombre/
+saldo/
+email/
 activado
 
 
